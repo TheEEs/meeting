@@ -55,7 +55,18 @@ cert=/etc/acme-certs/<tên miền của bạn>/fullchain.pem
 pkey=/etc/acme-certs/<tên miền của bạn>/key.pem
 ```
 
-5. Khởi động lại toàn bộ dịch vụ của bạn
+6. Cập nhật lại file `.env`:
+
+```env
+TURN_CREDENTIALS=replace.with.your.turn.credentials
+TURN_HOST=replace.with.your.turn.host
+TURNS_HOST=replace.with.your.turn.host
+TURN_PORT=3478
+TURNS_PORT=5349
+JVB_STUN_SERVERS=replace.with.your.stun.servers:3478
+```
+
+7. Khởi động lại toàn bộ dịch vụ của bạn
 ```bash
 docker-compose down && docker-compose up -d
 ```
