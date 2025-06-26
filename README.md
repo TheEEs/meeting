@@ -40,7 +40,22 @@ coturn:
             - web
 ```
 
-2. Khởi động lại toàn bộ dịch vụ của bạn
+2. Cài đặt tools `pwgen` (eg: `sudo apt-get install -y pwgen).
+
+3. Tạo password: `pwgen -s 64 1`. Một password được in ra terminal.
+
+4. Cập nhật password vào trong file `.jitsi-meet-cfg/coturn/turnserver.conf`: 
+```env
+static-auth-secret=<password vừa tạo>
+```
+
+5. Cập nhật chứng chỉ SSL cho Coturn trong `.jitsi-meet-cfg/coturn/turnserver.conf`:
+```env
+cert=/etc/acme-certs/<tên miền của bạn>/fullchain.pem
+pkey=/etc/acme-certs/<tên miền của bạn>/key.pem
+```
+
+5. Khởi động lại toàn bộ dịch vụ của bạn
 ```bash
 docker-compose down && docker-compose up -d
 ```
